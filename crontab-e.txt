@@ -1,0 +1,19 @@
+MAILTO="cccpm.admin@marinha.mil.br"
+
+0 2 * * *       /usr/sbin/samba_backup
+
+
+# Limpeza dos arquivos da pasta LIXEIRA
+00 20 * * 1-5 find /dados/lixeira/.recycle/ -type f -mtime 30 -exec rm -r {} \;
+
+
+# Limpeza dos arquivos da pasta COMPARTILHAMENTO_ARQUIVOS
+00 18 * * 1-5 find /dados/compartilhamento_arquivos/ -type f -mtime +30 -exec rm -r {} \;
+
+
+# Checar periodicamente a quota de forma automática
+0 4 * * * /sbin/quotacheck -avugf;
+
+
+# Executar o anti-vírus de forma automática
+00 22 * * 1-7 kesl-control --scan-file /dados;

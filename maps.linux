@@ -1,0 +1,12 @@
+#Mapeamento automático no Ubuntu-MB
+# /usr/local/samba/var/locks/sysvol/cccpmm.ad/scripts/maps.linux
+
+smb://cccpmfs.cccpmm.ad/publico
+
+smb://cccpmfs.cccpmm.ad/grupos
+
+smb://cccpmfs.cccpmm.ad/compartilhamento_arquivos
+
+smb://cccpmfs.cccpmm.ad/inventarioTI
+
+

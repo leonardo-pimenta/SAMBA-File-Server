@@ -1,0 +1,288 @@
+QUOTAS NO LINUX SAMBA POR USUÁRIOS
+
+1-editar quota:
+edquota -u USUARIO
+edquota -g GRUPO
+
+2-ESTÁ ATRIBUINDO A MESMA QUOTA DO USUARIO para os USUARIOS1 a 3:
+edquota -up USUARIO USUARIO1 USUARIO2 USUARIO3
+
+3-O sistema deverá ser reiniciado para as alterações entrarem em vigor:
+shutdown -r now
+
+4-Por padrão o linux cria grupos com o mesmo nome da conta do usuário. Esses grupos são chamados grupos primários. No quota, as cotas de grupo  só funcionam encima desses grupos primários.
+
+Para resolver o problema é necessário modificar o grupo primário dos usuários para o grupo onde  onde estão aplicadas as cotas de disco com o comando abaixo:
+usermod -g grupo usuario
+
+Obs.: se o grupo que vc quer tranferir o usuário já for um grupo secundário, retire o usuário dele para não haver nenhum problema.
+
+5-Se quiser poder fazer isso na criação do usuário via script com o comando:
+userdd -g grupo usuario
+
+6- VERIFICAR QUOTA DE USUÁRIOS
+repquota -uv /dados
+
+7- VERIFICAR QUOTA DE GRUPOS
+repquota -gv /dados
+
+8- Inicializando quotas:
+mount -o remount /
+quotacheck -avug /dados
+quotaon -avug /dados
+
+9- Ativa o suporte a quota em /dados (somente grupos de usuários no momento).
+quotaon -gv /dados
+
+10- Ativa as quotas de usuários em /dados
+quotaon -uv /dados
+
+11- Desativa as quotas de grupos em /dados (deixando somente a de usuários ativa)
+quotaoff -gv /dados
+
+12- Examina sistemas de arquivos e compila bancos de dados referente às cotas.
+quotacheck -vagum /dados
+
+13 - Comando usado para relatar sobre o status das cotas. Na primeira forma, repquota exibe um relatório 
+resumido sobre as cotas do sistema de arquivos, por usuário ou por grupo. Na segunda forma, a opção -a faz 
+com que seja apresentado um resumo para todos os sistemas de arquivos que tenham contas definidas. Este comando 
+somente por ser usuado pelo ROOT.
+repquota -aguv /dados
+
+
+
+GG-CC-01 - 3GB
+home/83016112 - 3GB
+home/presidente - 3GB
+
+GG-CC-01.1 - 8GB
+home/86414721 - 3GB
+home/01062450 - 3GB
+home/02126176 - 3GB
+home/06027555 - 3GB
+home/86258958 - 3GB
+home/87289911 - 3GB
+home/12133639 - 3GB
+home/16034112 - 3GB
+
+GG-CC-01.2 - 8GB
+home/86633198 - 3GB
+
+GG-CC-01.2-OUVIDORIA - 3GB
+home/85773107 - 3GB
+
+GG-CC-01.3 - 3GB
+home/86420526 - 3GB
+
+GG-CC-01.4 - 3GB
+home/86491229 - 3GB
+
+GG-CC-02 - 5GB
+home/86970330 - 3GB
+
+GG-CC-02.1 - 13GB
+home/86177109 - 3GB
+home/99233070 - 3GB
+home/18090419 - 3GB
+
+GG-CC-02.2 - 17GB
+sem usuário
+
+GG-CC-02.3 - 3GB
+sem usuário
+
+GG-CC-02.4 - 28GB
+home/82016011 - 3GB
+home/13131737 - 3GB
+home/20131445 - 3GB
+home/123689317 - 3GB
+
+GG-CC-09 - 28GB
+home/95016830 - 3GB
+home/98020498 - 3GB
+home/08033943 - 3GB
+home/14006103 - 3GB
+home/19007914 - 3GB
+
+GG-CC-10 - 8GB
+home/03119491 - 3GB
+
+GG-CC-11 - 28GB
+home/11067896 - 3GB
+home/05026326 - 3GB
+home/05762553 - 3GB
+home/01120816 - 3GB
+home/14145103 - 3GB
+home/14141485 - 3GB
+home/17104386 - 3GB
+home/16036727 - 3GB
+
+GG-CC-12 - 32GB
+home/80149979 - 3GB
+home/85208337 - 3GB
+home/85343137 - 3GB
+home/00117919 - 3GB
+home/17019389 - 3GB
+home/87273969 - 3GB
+home/63680378734 - 3GB
+home/85201022 - 3GB
+home/20789034778 - 3GB
+
+GG-CC-13 - 39GB
+home/ 15089436 - 3GB
+home/ 83347232 - 3GB
+home/ 85338940 - 3GB
+home/ 86011308 - 3GB
+home/ 91014042 - 3GB
+home/ 10025421 - 3GB
+home/ 16688183706 - 3GB
+
+GG-CC-14 - 35GB
+home/ 99205777 - 3GB
+home/ 14015021 - 3GB
+home/ 12981906739 - 3GB
+home/ 06742467 - 3GB
+
+GG-CC-20 - 3GB
+home/ 85746096 - 3GB
+
+GG-CC-21 - 120GB
+home/ 08016615 - 3GB
+home/ 15160793 - 3GB
+home/ 14150085 - 3GB
+home/ 08015252 - 3GB
+home/ 10140964 - 3GB
+home/ 23954310520 - 3GB
+home/ 15047482 - 3GB
+home/ 81178174 - 3GB
+home/ 08065737757 - 3GB
+home/ 07209723706 - 3GB
+home/ 05245246708 - 3GB
+home/ 85586463768 - 3GB
+home/ 00156466708 - 3GB
+home/ 10677956770 - 3GB
+home/ 98021851 - 3GB
+home/ 85064688 - 3GB
+home/ 01192088735 - 3GB
+
+GG-CC-22 - 21GB
+home/ 09009329 - 3GB
+home/ 13128876 - 3GB
+home/ 09597896770 - 3GB
+home/ 12431527700 - 3GB
+home/ 18463618774 - 3GB
+home/ 14928070798 - 3GB
+home/ 11053801 - 3GB
+home/ 10131835335 - 3GB
+
+GG-CC-23 - 5GB
+home/ 15113795 - 3GB
+home/ 08033374 - 3GB
+home/ 16005864 - 3GB
+home/ 13008836771 - 3GB
+home/ 10119305607 - 3GB
+home/ 66125057704 - 3GB
+home/ 80935060715 - 3GB
+home/ 88384080763 - 3GB
+home/ 04269252707 - 3GB
+home/ 19056044 - 3GB
+home/ 19056371 - 3GB
+home/ 92336906791 - 3GB
+
+GG-CC-30 - 5GB
+home/ 86841882 - 3GB
+
+GG-CC-31 - 23GB
+home/ 82314934 - 3GB
+home/ 85222917 - 3GB
+home/ 09097066 - 3GB
+home/ 05044855 - 3GB
+home/ 10032592 - 3GB
+home/ 21031924 - 3GB
+home/ 85878812 - 3GB
+home/ 06548920 - 3GB
+
+GG-CC-32 - 13GB
+home/ 99232979 - 3GB
+home/ 01060228 - 3GB
+home/ 06039120 - 3GB
+home/ 01062573 - 3GB
+home/ 10019308 - 3GB
+home/ 10026592 - 3GB
+home/ 07355238 - 3GB
+home/ 98118536 - 3GB
+home/ 97020001 - 3GB
+home/ 80342230 - 3GB
+home/ 82119333 - 3GB
+home/ 85190675 - 3GB
+home/ 85037516 - 3GB
+
+GG-CC-33 - 23GB
+home/ 14144433 - 3GB
+home/ 10009787 - 3GB
+home/ 18105220 - 3GB
+home/ 07425895790 - 3GB
+home/ 11675879796 - 3GB
+home/ 11067837 - 3GB
+home/ 13082256 - 3GB
+home/ 08009163 - 3GB
+home/ 83116834 - 3GB
+home/ 86296540 - 3GB
+
+GG-CC-34 - 25GB
+home/ 19083394 - 3GB
+home/ 16017129 - 3GB
+home/ 21008221 - 3GB
+home/ 84356537 - 3GB
+
+GG-CC-40 - 45GB
+home/ 02171261 - 3GB
+
+GG-CC-41 - 15GB
+home/ 17093252 - 3GB
+home/ 85824178704 - 3GB
+home/ 10508239745 - 3GB
+
+GG-CC-42 - 17GB
+home/ 13131711 - 3GB
+home/ 21027625 - 3GB
+home/ 21038520 - 3GB
+home/ 83906347 - 3GB
+home/ 15089304 - 3GB
+home/ 21223025 - 3GB
+home/ 02023920 - 3GB
+
+GG-CC-43 - 20GB
+home/ 98037676 - 3GB
+
+GG-CC-50 - 3GB
+home/ 98038176 - 3GB
+
+GG-CC-51 - 28GB
+home/ 14112256 - 3GB
+home/04017811 - 3GB
+home/ 06339743 - 3GB
+home/08077174795 - 3GB
+
+GG-CC-52 - 95GB
+home/ 000000 - 3GB
+
+GG-CC-60 - 17GB
+home/ 17090105 - 3GB
+home/ 14112124 - 3GB
+home/ 18090478 - 3GB
+home/ 12133264 - 3GB
+home/ 10012648 - 3GB
+home/ 15014983 - 3GB
+home/ 06063799 - 3GB
+home/ 03860884 - 3GB
+home/ 02836478764 - 3GB
+home/ 09075692773 - 3GB
+home/ 19050687784 - 3GB
+home/ 14467858741 - 3GB
+home/ 03538830770 - 3GB
+home/ 14333209757 - 3GB
+
+
+configurado até aqui 10SET2021.
+

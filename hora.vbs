@@ -1,0 +1,1 @@
+NET TIME \\CCCPMFS /Set /Y
