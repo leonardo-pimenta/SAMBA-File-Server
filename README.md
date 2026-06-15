@@ -1,2 +1,2 @@
 # SAMBA-File-Server1
-Setting Files from SAMBA File Server in production crrent.
+Setting Files from SAMBA File Server in production current.
